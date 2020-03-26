@@ -408,7 +408,7 @@ dependencies = [
  "tokio-sync",
  "tokio-tcp",
  "tokio-threadpool",
- "tokio-timer 0.2.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "tokio-timer 0.2.13",
  "tokio-udp",
  "tokio-uds",
 ]
@@ -538,6 +538,18 @@ dependencies = [
 [[package]]
 name = "tokio-timer"
 version = "0.2.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "93044f2d313c95ff1cb7809ce9a7a05735b012288a888b62d4434fd58c94f296"
+dependencies = [
+ "crossbeam-utils",
+ "futures",
+ "slab",
+ "tokio-executor",
+]
+
+[[package]]
+name = "tokio-timer"
+version = "0.2.14"
 dependencies = [
  "crossbeam-utils",
  "futures",
@@ -546,18 +558,6 @@ dependencies = [
  "tokio",
  "tokio-executor",
  "tokio-mock-task",
-]
-
-[[package]]
-name = "tokio-timer"
-version = "0.2.13"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "93044f2d313c95ff1cb7809ce9a7a05735b012288a888b62d4434fd58c94f296"
-dependencies = [
- "crossbeam-utils",
- "futures",
- "slab",
- "tokio-executor",
 ]
 
 [[package]]

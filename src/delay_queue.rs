@@ -690,14 +690,17 @@ impl<T> DelayQueue<T> {
             }
 
             self.delay = None;
+            // We poll the wheel to get the next value out before finding the next deadline.
+            let wheel_idx = self.wheel.poll(&mut self.poll, &mut self.slab);
+            self.delay = self
+                .next_deadline()
+                .map(|deadline| self.handle.delay(deadline));
 
-            if let Some(idx) = self.wheel.poll(&mut self.poll, &mut self.slab) {
+            if let Some(idx) = wheel_idx {
                 return Ok(Some(idx).into());
             }
 
-            if let Some(deadline) = self.next_deadline() {
-                self.delay = Some(self.handle.delay(deadline));
-            } else {
+            if self.delay.is_none() {
                 return Ok(None.into());
             }
         }
