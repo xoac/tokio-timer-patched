@@ -689,7 +689,6 @@ impl<T> DelayQueue<T> {
                 self.poll = wheel::Poll::new(now);
             }
 
-            self.delay = None;
             // We poll the wheel to get the next value out before finding the next deadline.
             let wheel_idx = self.wheel.poll(&mut self.poll, &mut self.slab);
             self.delay = self
